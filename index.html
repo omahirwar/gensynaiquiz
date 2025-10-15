@@ -2,97 +2,393 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gensyn Pioneer Hub — Advanced</title>
-  <link rel="icon" href="logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gensyn Pioneer Hub — With Quiz</title>
+  <link rel="icon" href="https://i.postimg.cc/G2ySHJNM/L-4-D2qr9-400x400.jpg" />
   <style>
-    :root{
-      --bg:#050507; --card:#0f1113; --muted:#9aa0a6; --accent1:#ff4b8b; --accent2:#ff006e;
+    :root {
+      --bg: #050507;
+      --card: #0f1113;
+      --muted: #9aa0a6;
+      --accent1: #ff4b8b;
+      --accent2: #ff006e;
       --glass: rgba(255,255,255,0.04);
-      --nav-height:70px;
+      --nav-height: 70px;
     }
-    /* Light theme variables (will be toggled) */
-    .light { --bg: #f6f7fb; --card:#ffffff; --muted:#555; --glass: rgba(0,0,0,0.03); --accent1:#0066ff; --accent2:#00c2ff; color-scheme: light; }
-
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Poppins',sans-serif;background:radial-gradient(circle at 10% 10%, rgba(255,75,139,0.03), transparent 30%), var(--bg); color:#fff;-webkit-font-smoothing:antialiased;}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:0 18px;}
-
-    /* NAV */
-    nav{height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;position:sticky;top:0;background:linear-gradient(180deg, rgba(0,0,0,0.35), transparent);backdrop-filter: blur(6px);z-index:40}
-    .nav-left{display:flex;align-items:center;gap:12px}
-    .logo{display:flex;align-items:center;gap:10px}
-    .logo img{width:44px;height:44px;border-radius:8px;object-fit:cover;border:1px solid rgba(255,255,255,0.06)}
-    .brand{font-weight:700;font-size:18px;letter-spacing:0.2px}
-    .nav-links{display:flex;gap:12px}
-    .nav-links a{padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}
-    .nav-links a:hover{background:var(--glass)}
-    .nav-actions{display:flex;gap:10px;align-items:center}
-    .btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;box-shadow:0 6px 20px rgba(255,0,110,0.08)}
-    .ghost{border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;background:transparent;color:var(--muted);font-weight:600}
-
-    /* HERO */
-    header.hero{position:relative;padding:28px 0 80px}
-    .hero-banner{width:100%;height:220px;border-radius:14px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,0.04)}
-    .hero-banner img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.6)}
-    .hero-card{margin-top:-80px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));border-radius:16px;padding:22px;display:flex;gap:18px;align-items:center;box-shadow:0 10px 40px rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.03)}
-    .hero-left{display:flex;gap:14px;align-items:center}
-    .hero-left .logo-lg{width:96px;height:96px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
-    .hero-left h1{margin:0;font-size:28px;line-height:1.05;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
-    .hero-left p{margin:6px 0 0;color:var(--muted);max-width:560px}
-
-    .hero-cta{margin-left:auto;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-    .small-links{display:flex;gap:8px;align-items:center}
-    .small-links a{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted)}
-    .typing{font-weight:700;color:var(--accent1);font-size:0.98rem}
-
-    /* GRID */
-    .grid{display:grid;grid-template-columns:1fr 2fr;gap:22px;margin-top:26px}
-    .card{background:var(--card);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(0,0,0,0.4);color: var(--text, #fff)}
-    .card h3{margin:0 0 10px;color:var(--accent1)}
-
-    /* Estimator */
-    .tool .row{display:flex;gap:10px;align-items:center;justify-content:center}
-    .tool input,.tool select{padding:12px;border-radius:10px;border:none;width:160px;font-weight:600;text-align:center}
-    .tool button{padding:10px 18px;border-radius:10px;border:none;font-weight:800;background:linear-gradient(90deg,var(--accent1),var(--accent2));cursor:pointer;color:#fff}
-    .result-box{margin-top:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));padding:12px;border-radius:10px;text-align:left;color:var(--muted)}
-    .result-row{display:flex;justify-content:space-between;gap:8px;padding:6px 0}
-    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
-    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent1),var(--accent2));width:10%}
-
-    /* Leaderboard */
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.03);font-weight:600;color:var(--muted)}
-    th{color:var(--accent1)}
-    .rank{font-weight:900;color:var(--accent2);width:60px}
-
-    /* How to join */
-    .steps{display:flex;flex-wrap:wrap;gap:12px}
-    .step{flex:1 1 220px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-
-    /* Footer */
-    footer{padding:34px 18px;background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06));color:var(--muted);margin-top:36px;border-top:1px solid rgba(255,255,255,0.02)}
-    .socials{display:flex;gap:12px;align-items:center}
-    .ic{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted)}
-
-    /* small screens */
-    @media (max-width:900px){
-      .grid{grid-template-columns:1fr; }
-      .hero-card{flex-direction:column;align-items:flex-start}
-      .hero-cta{align-items:stretch;width:100%}
-      .nav-links{display:none}
+    .light {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --muted: #555;
+      --glass: rgba(0,0,0,0.03);
+      --accent1: #0066ff;
+      --accent2: #00c2ff;
+      color-scheme: light;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(255,75,139,0.03), transparent 30%), var(--bg);
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+    nav {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      position: sticky;
+      top: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.35), transparent);
+      backdrop-filter: blur(6px);
+      z-index: 40;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+    }
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .nav-links a:hover {
+      background: var(--glass);
+    }
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(255,0,110,0.08);
+      border: none;
+      cursor: pointer;
+    }
+    .ghost {
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    header.hero {
+      position: relative;
+      padding: 28px 0 80px;
+    }
+    .hero-banner {
+      width: 100%;
+      height: 220px;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .hero-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+    .hero-card {
+      margin-top: -80px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .hero-left {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .hero-left .logo-lg {
+      width: 96px;
+      height: 96px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-left h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.05;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+    .hero-left p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 560px;
+    }
+    .hero-cta {
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .small-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .small-links a {
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .typing {
+      font-weight: 700;
+      color: var(--accent1);
+      font-size: 0.98rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 22px;
+      margin-top: 26px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      color: var(--text, #fff);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--accent1);
+    }
+    .tool .row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+    .tool input,.tool select {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      width: 160px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .tool button {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      cursor: pointer;
+      color: #fff;
+    }
+    .result-box {
+      margin-top: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+      padding: 12px;
+      border-radius: 10px;
+      text-align: left;
+      color: var(--muted);
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 0;
+    }
+    .progress {
+      height: 10px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress > i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      width: 10%;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      font-weight: 600;
+      color: var(--muted);
+    }
+    th {
+      color: var(--accent1);
+    }
+    .rank {
+      font-weight: 900;
+      color: var(--accent2);
+      width: 60px;
+    }
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .step {
+      flex: 1 1 220px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .quiz-card {
+      margin-top: 18px;
+      border-radius: 12px;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .quiz-start {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .quiz-btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .quiz-hidden {
+      display: none;
+    }
+    .q {
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.02);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .opt.correct {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #000;
+    }
+    .opt.wrong {
+      background: rgba(255,0,110,0.12);
+      color: #fff;
+      border-color: rgba(255,0,110,0.2);
+    }
+    .quiz-footer {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+    .save-btn {
+      background: #22c55e;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+    @media (max-width:900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-cta {
+        align-items: stretch;
+        width: 100%;
+      }
+      .nav-links {
+        display: none;
+      }
     }
   </style>
-</head>
 <body>
 
   <!-- NAV -->
   <nav>
     <div class="nav-left container" style="max-width:1200px;">
       <div class="logo">
-        <img src="logo.png" alt="logo">
+        <img src="https://i.postimg.cc/G2ySHJNM/L-4-D2qr9-400x400.jpg" alt="logo">
         <div>
           <div class="brand">Gensyn Pioneer Hub</div>
           <div style="font-size:12px;color:var(--muted)">AI • DePIN • Community</div>
@@ -118,14 +414,14 @@
 
   <!-- HERO -->
   <header class="hero container">
-    <div class="hero-banner"><img src="banner.jpg" alt="banner"></div>
+    <div class="hero-banner"><img src="https://i.postimg.cc/9fJcLVQV/HYu-S2-M6-NAL.jpg" alt="banner"></div>
 
     <div class="hero-card container">
       <div class="hero-left">
-        <div class="logo-lg"><img src="logo.png" alt="logo" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="logo-lg"><img src="https://i.postimg.cc/G2ySHJNM/L-4-D2qr9-400x400.jpg" alt="logo" style="width:100%;height:100%;object-fit:cover"></div>
         <div>
           <h1>Gensyn Pioneer Hub</h1>
-          <p id="lead" style="margin-top:6px;color:var(--muted)">Your community-built portal for Gensyn Pioneer Program — tools, guides, and resources for contributors.</p>
+          <p id="lead" style="margin-top:6px;color:var(--muted)">Your community-built portal for Gensyn Pioneer Program — tools, guides, resources & quiz.</p>
           <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
             <div class="typing" id="typingTxt"></div>
           </div>
@@ -147,18 +443,16 @@
     </div>
   </header>
 
-  <!-- MAIN -->
   <main class="container" style="max-width:1100px;">
     <section id="about" class="card">
       <h3>About Gensyn</h3>
       <p style="color:var(--muted);margin-top:10px">
         Gensyn builds a decentralized compute network to make AI training affordable by connecting developers to idle GPU hardware worldwide.
-        Pioneer Program rewards contributors who build, document and promote the ecosystem.
+        The Pioneer Program rewards contributors who build, document, promote the ecosystem, and test their knowledge via the embedded quiz.
       </p>
     </section>
 
     <div class="grid">
-      <!-- LEFT: Estimator + Leaderboard -->
       <div>
         <div id="estimator" class="card tool">
           <h3>⚙️ GPU Earnings Estimator</h3>
@@ -178,8 +472,7 @@
             <div class="result-row"><div style="color:var(--muted)">Daily (approx)</div><div id="dailyVal" style="font-weight:900"></div></div>
             <div class="result-row"><div style="color:var(--muted)">Weekly (approx)</div><div id="weeklyVal" style="font-weight:900"></div></div>
             <div class="result-row"><div style="color:var(--muted)">Monthly (approx)</div><div id="monthlyVal" style="font-weight:900"></div></div>
-            <div style="margin-top:10px;color:var(--muted)">Estimated payout depends on job availability, region, and hardware specs. Use as a guide, not guaranteed.</div>
-
+            <div style="margin-top:10px;color:var(--muted)">Estimate depends on job availability, region & hardware specs.</div>
             <div style="margin-top:12px">
               <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Utilization visual</div>
               <div class="progress"><i id="progBar" style="width:10%"></i></div>
@@ -189,45 +482,43 @@
 
         <div class="card" style="margin-top:16px">
           <h3>🏆 Leaderboard — Top Pioneers</h3>
-          <table aria-label="leaderboard" style="margin-top:12px">
+          <table style="margin-top:12px">
             <thead><tr><th class="rank">#</th><th>Handle</th><th>GPUs</th><th>Est. Rewards</th></tr></thead>
-            <tbody>
+            <tbody id="staticBoard">
               <tr><td class="rank">1</td><td>@AlphaNode</td><td>128</td><td>$1,920</td></tr>
               <tr><td class="rank">2</td><td>@AI_Rider</td><td>96</td><td>$1,440</td></tr>
               <tr><td class="rank">3</td><td>@PioneerX</td><td>48</td><td>$720</td></tr>
               <tr><td class="rank">4</td><td>@Omprakash</td><td>24</td><td>$360</td></tr>
             </tbody>
           </table>
-          <div style="margin-top:10px;color:var(--muted);font-size:13px">Want to appear here? Contribute and add proofs in the biweekly form.</div>
+          <div style="margin-top:10px;color:var(--muted);font-size:13px">Want to be here? Contribute & prove your worth.</div>
         </div>
       </div>
 
-      <!-- RIGHT: How to join + Roadmap -->
       <div>
         <div id="join" class="card">
           <h3>🧭 How to Join — A → Z</h3>
           <div class="steps" style="margin-top:12px">
             <div class="step"><strong>1. Join Discord</strong><div style="color:var(--muted);margin-top:6px">Click Join and read #welcome & #how-to-earn.</div></div>
-            <div class="step"><strong>2. Pick a Role</strong><div style="color:var(--muted);margin-top:6px">Rover / Navigator / Pioneer — follow role checklist.</div></div>
-            <div class="step"><strong>3. Contribute</strong><div style="color:var(--muted);margin-top:6px">Build tools, write threads, help newbies, create memes.</div></div>
-            <div class="step"><strong>4. Collect Proofs</strong><div style="color:var(--muted);margin-top:6px">Screenshots, tweet links, repo links saved for form.</div></div>
-            <div class="step"><strong>5. Fill Biweekly Form</strong><div style="color:var(--muted);margin-top:6px">Submit contributions every 2 weeks.</div></div>
+            <div class="step"><strong>2. Choose Role</strong><div style="color:var(--muted);margin-top:6px">Rover / Navigator / Pioneer — follow the role checklist.</div></div>
+            <div class="step"><strong>3. Contribute</strong><div style="color:var(--muted);margin-top:6px">Build tools, threads, memes, help newcomers.</div></div>
+            <div class="step"><strong>4. Collect Proofs</strong><div style="color:var(--muted);margin-top:6px">Save screenshots, tweet links, repo links.</div></div>
+            <div class="step"><strong>5. Fill Biweekly Form</strong><div style="color:var(--muted);margin-top:6px">Submit your contributions every 2 weeks.</div></div>
           </div>
         </div>
 
         <div id="roadmap" class="card" style="margin-top:16px">
-          <h3>📅 Roadmap (high level)</h3>
+          <h3>📅 Roadmap (High Level)</h3>
           <ul style="color:var(--muted);margin-top:12px;line-height:1.6;text-align:left">
-            <li><strong>Phase 1:</strong> Pioneer onboarding & docs</li>
-            <li><strong>Phase 2:</strong> Node tools & dashboards</li>
+            <li><strong>Phase 1:</strong> Launch Pioneer Program & docs</li>
+            <li><strong>Phase 2:</strong> Node tools & analytics</li>
             <li><strong>Phase 3:</strong> Token incentives & staking</li>
-            <li><strong>Phase 4:</strong> Marketplace & governance</li>
+            <li><strong>Phase 4:</strong> Marketplace & DAO launch</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- Extras -->
     <section class="card" style="margin-top:18px">
       <h3>🔗 Quick Links</h3>
       <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px">
@@ -235,6 +526,48 @@
         <a class="ic" href="https://x.com/gensynai?s=09" target="_blank">X / Twitter</a>
         <a class="ic" href="https://docs.gensyn.ai" target="_blank">Docs</a>
         <a class="ic" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</a>
+      </div>
+
+      <div class="quiz-card" id="quizCard">
+        <h3>🧠 Gensyn Quiz</h3>
+        <p style="color:var(--muted);margin-top:6px">Test your knowledge about Gensyn, AI & DePIN. Score is stored locally.</p>
+
+        <div class="quiz-start" id="quizStartArea">
+          <button class="quiz-btn" id="startQuizBtn">Start Quiz</button>
+          <button class="quiz-btn" id="viewBoardBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);">View Quiz Leaderboard</button>
+        </div>
+
+        <div id="quizPanel" class="quiz-hidden" style="margin-top:14px">
+          <div id="questionArea">
+            <div class="q" id="qText"></div>
+            <div id="opts"></div>
+          </div>
+
+          <div class="quiz-footer">
+            <div>
+              <div id="progressTxt" style="font-weight:800;color:var(--muted)">Q 0 / 10</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button class="save-btn" id="nextQBtn">Next</button>
+              <button class="save-btn" id="finishBtn" style="background:#ffb86b">Finish</button>
+            </div>
+          </div>
+
+          <div id="scoreArea" class="quiz-hidden" style="margin-top:12px">
+            <div id="finalScore" style="font-weight:900;color:var(--accent2)"></div>
+            <div style="margin-top:8px;display:flex;gap:8px">
+              <input id="playerName" placeholder="Enter name to save" style="padding:8px;border-radius:8px;border:none;font-weight:700" />
+              <button class="save-btn" id="saveScoreBtn">Save Score</button>
+              <button id="retakeBtn" class="quiz-btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);">Retake</button>
+            </div>
+          </div>
+
+          <div id="localBoard" style="margin-top:14px;display:none">
+            <h4 style="margin:8px 0 6px;color:var(--accent1)">🏆 Quiz Leaderboard</h4>
+            <ol id="quizBoardList" style="color:var(--muted);padding-left:18px"></ol>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">Top scores stored locally.</div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -253,56 +586,51 @@
   </footer>
 
   <script>
-    /* ---------------------------
-       Typing animation (hero)
-       --------------------------- */
-    const texts = ["Empowering decentralized AI compute","Track tasks • Build tools • Earn roles","Join the Pioneer Program — start today"];
+    // Typing animation
+    const texts = ["Empowering decentralized AI compute", "Track tasks • Build tools • Earn roles", "Join the Pioneer Program — start today"];
     let idx = 0, pos = 0, forward = true;
     const typingElem = document.getElementById('typingTxt');
     function tick() {
       const txt = texts[idx];
-      typingElem.textContent = txt.slice(0,pos);
+      typingElem.textContent = txt.slice(0, pos);
       if (forward) {
         pos++;
-        if (pos > txt.length) { forward = false; setTimeout(()=>{forward=false},800); }
+        if (pos > txt.length) {
+          forward = false;
+          setTimeout(()=>{forward = false}, 800);
+        }
       } else {
         pos--;
-        if (pos < 0) { idx = (idx+1)%texts.length; forward = true; pos = 0; }
+        if (pos < 0) {
+          idx = (idx + 1) % texts.length;
+          forward = true;
+          pos = 0;
+        }
       }
       setTimeout(tick, forward ? 50 : 30);
     }
     setTimeout(tick, 700);
 
-    /* ---------------------------
-       Estimator logic
-       --------------------------- */
+    // Estimator logic
     function runEstimate(){
-      const count = Math.max(0, parseInt(document.getElementById('gpuCount').value || 0));
+      const cnt = parseInt(document.getElementById('gpuCount').value) || 0;
       const tier = document.getElementById('tier').value;
-      // rates (per-GPU per day) — adjust any time
-      const rateMap = { low: 0.8, med: 1.5, pro: 3.0 }; // $ per GPU per day (estimate)
-      const perDay = (rateMap[tier]||1.0) * count;
-      const daily = perDay;
-      const weekly = perDay * 7;
-      const monthly = perDay * 30;
-      document.getElementById('dailyVal').innerText = "$" + daily.toFixed(2);
-      document.getElementById('weeklyVal').innerText = "$" + weekly.toFixed(2);
-      document.getElementById('monthlyVal').innerText = "$" + monthly.toFixed(2);
-      // progress visual (utilization estimate)
-      const util = Math.min(100, Math.round((count / 200) * 100) + (tier==='pro'?20:0));
+      const rateMap = { low: 0.8, med: 1.5, pro: 3.0 };
+      const perDay = (rateMap[tier] || 1.0) * cnt;
+      document.getElementById('dailyVal').innerText = "$" + perDay.toFixed(2);
+      document.getElementById('weeklyVal').innerText = "$" + (perDay * 7).toFixed(2);
+      document.getElementById('monthlyVal').innerText = "$" + (perDay * 30).toFixed(2);
+      const util = Math.min(100, Math.round((cnt / 200) * 100) + (tier === 'pro' ? 20 : 0));
       document.getElementById('progBar').style.width = util + "%";
       document.getElementById('resultBox').style.display = 'block';
     }
 
-    /* ---------------------------
-       Theme toggle
-       --------------------------- */
+    // Theme toggle
     const themeBtn = document.getElementById('themeToggle');
-    function setLight(isLight){
-      if(isLight) document.documentElement.classList.add('light'); else document.documentElement.classList.remove('light');
+    function setLight(isLight) {
+      if (isLight) document.documentElement.classList.add('light'); else document.documentElement.classList.remove('light');
       themeBtn.innerText = isLight ? 'Dark' : 'Light';
     }
-    // load default (dark)
     let light = false;
     themeBtn.addEventListener('click', ()=>{
       light = !light;
@@ -310,16 +638,150 @@
     });
     setLight(false);
 
-    /* ---------------------------
-       Smooth anchor scrolling fallback
-       --------------------------- */
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
+    // Smooth scroll fallback
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
         e.preventDefault();
         const t = document.querySelector(a.getAttribute('href'));
-        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // QUIZ
+    const quizData = [
+      { q: "What is Gensyn’s main goal in AI computing?", opts: ["Data storage", "Affordable AI compute", "NFT trading", "Gaming"], a: 1 },
+      { q: "How much funding has Gensyn raised (approx)?", opts: ["$10M", "$25M", "$50.6M", "$100M"], a: 2 },
+      { q: "Gensyn connects developers with which hardware?", opts: ["Idle GPUs", "CPUs", "Quantum chips", "Storage nodes"], a: 0 },
+      { q: "Which concept helps ensure decentralization in Gensyn?", opts: ["Smart Contracts", "Central Servers", "Private Cloud", "Single Provider"], a: 0 },
+      { q: "What is a Rover in the Pioneer Program?", opts: ["Testers", "Consistent contributors", "Investors", "Bot creators"], a: 1 },
+      { q: "What is a Navigator?", opts: ["Spammer", "Meme creator", "Community builder & toolmaker", "Only coders"], a: 2 },
+      { q: "How often do contributors submit the Pioneer form?", opts: ["Weekly", "Once in 2 weeks", "Daily", "Monthly"], a: 1 },
+      { q: "What marketplace type does Gensyn create?", opts: ["Compute marketplace", "NFT marketplace", "Data marketplace", "Game marketplace"], a: 0 },
+      { q: "Main benefit of Gensyn’s platform?", opts: ["Expensive AI", "Affordable decentralized AI", "Central control", "Less security"], a: 1 },
+      { q: "Where is the Pioneer community most active?", opts: ["Instagram", "Reddit", "Discord", "Telegram"], a: 2 }
+    ];
+
+    const startQuizBtn = document.getElementById('startQuizBtn');
+    const viewBoardBtn = document.getElementById('viewBoardBtn');
+    const quizPanel = document.getElementById('quizPanel');
+    const qText = document.getElementById('qText');
+    const optsDiv = document.getElementById('opts');
+    const nextQBtn = document.getElementById('nextQBtn');
+    const finishBtn = document.getElementById('finishBtn');
+    const scoreArea = document.getElementById('scoreArea');
+    const finalScore = document.getElementById('finalScore');
+    const playerName = document.getElementById('playerName');
+    const saveScoreBtn = document.getElementById('saveScoreBtn');
+    const retakeBtn = document.getElementById('retakeBtn');
+    const localBoard = document.getElementById('localBoard');
+    const quizBoardList = document.getElementById('quizBoardList');
+    let cur = 0, scr = 0, answered = false;
+
+    function showQuestion(i) {
+      const it = quizData[i];
+      qText.innerText = it.q;
+      optsDiv.innerHTML = '';
+      it.opts.forEach((o, idx) => {
+        const b = document.createElement('button');
+        b.className = 'opt';
+        b.innerText = o;
+        b.onclick = () => selectAnswer(idx, b);
+        optsDiv.appendChild(b);
+      });
+      answered = false;
+      document.getElementById('progressTxt').innerText = `Q ${i+1} / ${quizData.length}`;
+    }
+
+    function selectAnswer(idx, btnEl) {
+      if (answered) return;
+      answered = true;
+      const correct = quizData[cur].a;
+      Array.from(optsDiv.children).forEach((c, ci) => {
+        c.classList.remove('correct','wrong');
+        if (ci === correct) c.classList.add('correct');
+        if (ci === idx && idx !== correct) c.classList.add('wrong');
+      });
+      if (idx === correct) scr++;
+      nextQBtn.classList.remove('hidden');
+    }
+
+    startQuizBtn.addEventListener('click', () => {
+      quizPanel.classList.remove('quiz-hidden');
+      document.getElementById('quizStartArea').style.display = 'none';
+      cur = 0; scr = 0;
+      showQuestion(cur);
+    });
+
+    nextQBtn.addEventListener('click', () => {
+      if (!answered) { alert('Choose an option first'); return; }
+      cur++;
+      if (cur < quizData.length) {
+        showQuestion(cur);
+      } else {
+        finishQuiz();
+      }
+    });
+
+    finishBtn.addEventListener('click', finishQuiz);
+
+    function finishQuiz() {
+      scoreArea.classList.remove('quiz-hidden');
+      finalScore.innerText = `Your Score: ${scr} / ${quizData.length}`;
+      document.getElementById('questionArea').style.display = 'none';
+      document.getElementById('opts').style.display = 'none';
+      nextQBtn.style.display = 'none';
+      finishBtn.style.display = 'none';
+      localBoard.style.display = 'block';
+      renderBoard();
+    }
+
+    saveScoreBtn.addEventListener('click', () => {
+      const nm = (playerName.value || '').trim();
+      if (!nm) return alert('Enter name!');
+      const lst = JSON.parse(localStorage.getItem('gensynQuizBoard') || '[]');
+      lst.push({ name: nm, score: scr, time: Date.now() });
+      lst.sort((a,b) => b.score - a.score || a.time - b.time);
+      localStorage.setItem('gensynQuizBoard', JSON.stringify(lst.slice(0,20)));
+      renderBoard();
+      alert('Saved! Refresh to retake.');
+    });
+
+    retakeBtn.addEventListener('click', () => {
+      document.getElementById('questionArea').style.display = '';
+      document.getElementById('opts').style.display = '';
+      document.getElementById('progressTxt').style.display = '';
+      nextQBtn.style.display = '';
+      finishBtn.style.display = '';
+      scoreArea.classList.add('quiz-hidden');
+      cur = 0; scr = 0;
+      playerName.value = '';
+      finalScore.innerText = '';
+      showQuestion(cur);
+    });
+
+    viewBoardBtn.addEventListener('click', () => {
+      localBoard.style.display = localBoard.style.display === 'block' ? 'none' : 'block';
+      renderBoard();
+    });
+
+    function renderBoard() {
+      const lst = JSON.parse(localStorage.getItem('gensynQuizBoard') || '[]');
+      if (!lst.length) {
+        quizBoardList.innerHTML = '<li style="color:var(--muted)">No scores yet</li>';
+      } else {
+        quizBoardList.innerHTML = lst.slice(0,10).map((e,i)=> `<li>${i+1}. ${escapeHtml(e.name)} — ${e.score}</li>`).join('');
+      }
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"']/g, (m) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;' }[m]));
+    }
+
+    (function initUI(){
+      quizPanel.classList.add('quiz-hidden');
+      renderBoard();
+    })();
+
   </script>
 </body>
 </html>
