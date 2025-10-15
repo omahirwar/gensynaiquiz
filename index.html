@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gensyn Pioneer Hub — Advanced</title>
+  <link rel="icon" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050507; --card:#0f1113; --muted:#9aa0a6; --accent1:#ff4b8b; --accent2:#ff006e;
+      --glass: rgba(255,255,255,0.04);
+      --nav-height:70px;
+    }
+    /* Light theme variables (will be toggled) */
+    .light { --bg: #f6f7fb; --card:#ffffff; --muted:#555; --glass: rgba(0,0,0,0.03); --accent1:#0066ff; --accent2:#00c2ff; color-scheme: light; }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Poppins',sans-serif;background:radial-gradient(circle at 10% 10%, rgba(255,75,139,0.03), transparent 30%), var(--bg); color:#fff;-webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px;}
+
+    /* NAV */
+    nav{height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;position:sticky;top:0;background:linear-gradient(180deg, rgba(0,0,0,0.35), transparent);backdrop-filter: blur(6px);z-index:40}
+    .nav-left{display:flex;align-items:center;gap:12px}
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo img{width:44px;height:44px;border-radius:8px;object-fit:cover;border:1px solid rgba(255,255,255,0.06)}
+    .brand{font-weight:700;font-size:18px;letter-spacing:0.2px}
+    .nav-links{display:flex;gap:12px}
+    .nav-links a{padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}
+    .nav-links a:hover{background:var(--glass)}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;box-shadow:0 6px 20px rgba(255,0,110,0.08)}
+    .ghost{border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;background:transparent;color:var(--muted);font-weight:600}
+
+    /* HERO */
+    header.hero{position:relative;padding:28px 0 80px}
+    .hero-banner{width:100%;height:220px;border-radius:14px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,0.04)}
+    .hero-banner img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.6)}
+    .hero-card{margin-top:-80px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));border-radius:16px;padding:22px;display:flex;gap:18px;align-items:center;box-shadow:0 10px 40px rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.03)}
+    .hero-left{display:flex;gap:14px;align-items:center}
+    .hero-left .logo-lg{width:96px;height:96px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
+    .hero-left h1{margin:0;font-size:28px;line-height:1.05;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+    .hero-left p{margin:6px 0 0;color:var(--muted);max-width:560px}
+
+    .hero-cta{margin-left:auto;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+    .small-links{display:flex;gap:8px;align-items:center}
+    .small-links a{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted)}
+    .typing{font-weight:700;color:var(--accent1);font-size:0.98rem}
+
+    /* GRID */
+    .grid{display:grid;grid-template-columns:1fr 2fr;gap:22px;margin-top:26px}
+    .card{background:var(--card);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(0,0,0,0.4);color: var(--text, #fff)}
+    .card h3{margin:0 0 10px;color:var(--accent1)}
+
+    /* Estimator */
+    .tool .row{display:flex;gap:10px;align-items:center;justify-content:center}
+    .tool input,.tool select{padding:12px;border-radius:10px;border:none;width:160px;font-weight:600;text-align:center}
+    .tool button{padding:10px 18px;border-radius:10px;border:none;font-weight:800;background:linear-gradient(90deg,var(--accent1),var(--accent2));cursor:pointer;color:#fff}
+    .result-box{margin-top:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));padding:12px;border-radius:10px;text-align:left;color:var(--muted)}
+    .result-row{display:flex;justify-content:space-between;gap:8px;padding:6px 0}
+    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent1),var(--accent2));width:10%}
+
+    /* Leaderboard */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.03);font-weight:600;color:var(--muted)}
+    th{color:var(--accent1)}
+    .rank{font-weight:900;color:var(--accent2);width:60px}
+
+    /* How to join */
+    .steps{display:flex;flex-wrap:wrap;gap:12px}
+    .step{flex:1 1 220px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* Footer */
+    footer{padding:34px 18px;background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06));color:var(--muted);margin-top:36px;border-top:1px solid rgba(255,255,255,0.02)}
+    .socials{display:flex;gap:12px;align-items:center}
+    .ic{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted)}
+
+    /* small screens */
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr; }
+      .hero-card{flex-direction:column;align-items:flex-start}
+      .hero-cta{align-items:stretch;width:100%}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left container" style="max-width:1200px;">
+      <div class="logo">
+        <img src="logo.png" alt="logo">
+        <div>
+          <div class="brand">Gensyn Pioneer Hub</div>
+          <div style="font-size:12px;color:var(--muted)">AI • DePIN • Community</div>
+        </div>
+      </div>
+
+      <div class="nav-links" aria-hidden="true">
+        <a href="#about">About</a>
+        <a href="#estimator">Estimator</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#join">How to Join</a>
+      </div>
+    </div>
+
+    <div class="nav-actions container" style="max-width:1200px;justify-content:flex-end">
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="themeToggle" class="ghost" title="Toggle theme">Light</button>
+        <a class="ghost" href="https://x.com/gensynai?s=09" target="_blank" rel="noreferrer">Follow X</a>
+        <a class="btn" href="https://discord.gg/gensyn" target="_blank" rel="noreferrer">Join</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero container">
+    <div class="hero-banner"><img src="banner.jpg" alt="banner"></div>
+
+    <div class="hero-card container">
+      <div class="hero-left">
+        <div class="logo-lg"><img src="logo.png" alt="logo" style="width:100%;height:100%;object-fit:cover"></div>
+        <div>
+          <h1>Gensyn Pioneer Hub</h1>
+          <p id="lead" style="margin-top:6px;color:var(--muted)">Your community-built portal for Gensyn Pioneer Program — tools, guides, and resources for contributors.</p>
+          <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+            <div class="typing" id="typingTxt"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <div class="small-links">
+          <a href="https://discord.gg/gensyn" target="_blank" class="small">Discord</a>
+          <a href="https://x.com/gensynai?s=09" target="_blank" class="small">X</a>
+          <a href="https://docs.gensyn.ai" target="_blank" class="small">Docs</a>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+          <a class="btn" href="https://discord.gg/gensyn" target="_blank">Join the Pioneer Hub 🚀</a>
+          <a class="ghost" href="#join">How to join</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container" style="max-width:1100px;">
+    <section id="about" class="card">
+      <h3>About Gensyn</h3>
+      <p style="color:var(--muted);margin-top:10px">
+        Gensyn builds a decentralized compute network to make AI training affordable by connecting developers to idle GPU hardware worldwide.
+        Pioneer Program rewards contributors who build, document and promote the ecosystem.
+      </p>
+    </section>
+
+    <div class="grid">
+      <!-- LEFT: Estimator + Leaderboard -->
+      <div>
+        <div id="estimator" class="card tool">
+          <h3>⚙️ GPU Earnings Estimator</h3>
+          <p style="color:var(--muted);margin:8px 0 12px">Choose your tier and enter GPU count — get an instant estimate.</p>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <select id="tier" aria-label="tier">
+              <option value="low">Low (starter)</option>
+              <option value="med" selected>Medium (common)</option>
+              <option value="pro">Pro (high performance)</option>
+            </select>
+            <input id="gpuCount" type="number" min="1" placeholder="GPU count" value="1">
+            <button onclick="runEstimate()">Estimate</button>
+          </div>
+
+          <div id="resultBox" class="result-box" style="display:none">
+            <div class="result-row"><div style="color:var(--muted)">Daily (approx)</div><div id="dailyVal" style="font-weight:900"></div></div>
+            <div class="result-row"><div style="color:var(--muted)">Weekly (approx)</div><div id="weeklyVal" style="font-weight:900"></div></div>
+            <div class="result-row"><div style="color:var(--muted)">Monthly (approx)</div><div id="monthlyVal" style="font-weight:900"></div></div>
+            <div style="margin-top:10px;color:var(--muted)">Estimated payout depends on job availability, region, and hardware specs. Use as a guide, not guaranteed.</div>
+
+            <div style="margin-top:12px">
+              <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Utilization visual</div>
+              <div class="progress"><i id="progBar" style="width:10%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>🏆 Leaderboard — Top Pioneers</h3>
+          <table aria-label="leaderboard" style="margin-top:12px">
+            <thead><tr><th class="rank">#</th><th>Handle</th><th>GPUs</th><th>Est. Rewards</th></tr></thead>
+            <tbody>
+              <tr><td class="rank">1</td><td>@AlphaNode</td><td>128</td><td>$1,920</td></tr>
+              <tr><td class="rank">2</td><td>@AI_Rider</td><td>96</td><td>$1,440</td></tr>
+              <tr><td class="rank">3</td><td>@PioneerX</td><td>48</td><td>$720</td></tr>
+              <tr><td class="rank">4</td><td>@Omprakash</td><td>24</td><td>$360</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:10px;color:var(--muted);font-size:13px">Want to appear here? Contribute and add proofs in the biweekly form.</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: How to join + Roadmap -->
+      <div>
+        <div id="join" class="card">
+          <h3>🧭 How to Join — A → Z</h3>
+          <div class="steps" style="margin-top:12px">
+            <div class="step"><strong>1. Join Discord</strong><div style="color:var(--muted);margin-top:6px">Click Join and read #welcome & #how-to-earn.</div></div>
+            <div class="step"><strong>2. Pick a Role</strong><div style="color:var(--muted);margin-top:6px">Rover / Navigator / Pioneer — follow role checklist.</div></div>
+            <div class="step"><strong>3. Contribute</strong><div style="color:var(--muted);margin-top:6px">Build tools, write threads, help newbies, create memes.</div></div>
+            <div class="step"><strong>4. Collect Proofs</strong><div style="color:var(--muted);margin-top:6px">Screenshots, tweet links, repo links saved for form.</div></div>
+            <div class="step"><strong>5. Fill Biweekly Form</strong><div style="color:var(--muted);margin-top:6px">Submit contributions every 2 weeks.</div></div>
+          </div>
+        </div>
+
+        <div id="roadmap" class="card" style="margin-top:16px">
+          <h3>📅 Roadmap (high level)</h3>
+          <ul style="color:var(--muted);margin-top:12px;line-height:1.6;text-align:left">
+            <li><strong>Phase 1:</strong> Pioneer onboarding & docs</li>
+            <li><strong>Phase 2:</strong> Node tools & dashboards</li>
+            <li><strong>Phase 3:</strong> Token incentives & staking</li>
+            <li><strong>Phase 4:</strong> Marketplace & governance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extras -->
+    <section class="card" style="margin-top:18px">
+      <h3>🔗 Quick Links</h3>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px">
+        <a class="ic" href="https://discord.gg/gensyn" target="_blank">Discord</a>
+        <a class="ic" href="https://x.com/gensynai?s=09" target="_blank">X / Twitter</a>
+        <a class="ic" href="https://docs.gensyn.ai" target="_blank">Docs</a>
+        <a class="ic" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1100px">
+      <div>
+        Built for <a href="https://x.com/gensynai?s=09" target="_blank">@GensynAI</a> — Designed by <strong>Omprakash</strong>
+      </div>
+      <div class="socials">
+        <a class="ic" href="https://x.com/gensynai?s=09" target="_blank">X</a>
+        <a class="ic" href="https://discord.gg/gensyn" target="_blank">Discord</a>
+        <a class="ic" href="mailto:youremail@example.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ---------------------------
+       Typing animation (hero)
+       --------------------------- */
+    const texts = ["Empowering decentralized AI compute","Track tasks • Build tools • Earn roles","Join the Pioneer Program — start today"];
+    let idx = 0, pos = 0, forward = true;
+    const typingElem = document.getElementById('typingTxt');
+    function tick() {
+      const txt = texts[idx];
+      typingElem.textContent = txt.slice(0,pos);
+      if (forward) {
+        pos++;
+        if (pos > txt.length) { forward = false; setTimeout(()=>{forward=false},800); }
+      } else {
+        pos--;
+        if (pos < 0) { idx = (idx+1)%texts.length; forward = true; pos = 0; }
+      }
+      setTimeout(tick, forward ? 50 : 30);
+    }
+    setTimeout(tick, 700);
+
+    /* ---------------------------
+       Estimator logic
+       --------------------------- */
+    function runEstimate(){
+      const count = Math.max(0, parseInt(document.getElementById('gpuCount').value || 0));
+      const tier = document.getElementById('tier').value;
+      // rates (per-GPU per day) — adjust any time
+      const rateMap = { low: 0.8, med: 1.5, pro: 3.0 }; // $ per GPU per day (estimate)
+      const perDay = (rateMap[tier]||1.0) * count;
+      const daily = perDay;
+      const weekly = perDay * 7;
+      const monthly = perDay * 30;
+      document.getElementById('dailyVal').innerText = "$" + daily.toFixed(2);
+      document.getElementById('weeklyVal').innerText = "$" + weekly.toFixed(2);
+      document.getElementById('monthlyVal').innerText = "$" + monthly.toFixed(2);
+      // progress visual (utilization estimate)
+      const util = Math.min(100, Math.round((count / 200) * 100) + (tier==='pro'?20:0));
+      document.getElementById('progBar').style.width = util + "%";
+      document.getElementById('resultBox').style.display = 'block';
+    }
+
+    /* ---------------------------
+       Theme toggle
+       --------------------------- */
+    const themeBtn = document.getElementById('themeToggle');
+    function setLight(isLight){
+      if(isLight) document.documentElement.classList.add('light'); else document.documentElement.classList.remove('light');
+      themeBtn.innerText = isLight ? 'Dark' : 'Light';
+    }
+    // load default (dark)
+    let light = false;
+    themeBtn.addEventListener('click', ()=>{
+      light = !light;
+      setLight(light);
+    });
+    setLight(false);
+
+    /* ---------------------------
+       Smooth anchor scrolling fallback
+       --------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+  </script>
+</body>
+</html>
